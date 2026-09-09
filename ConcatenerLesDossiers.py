@@ -13,7 +13,7 @@ users_existants = racine_destination.findall('user')
 
 # Parcourir chaque fichier XML
 for fichier in fichiers_xml:
-    print(f"Traitement du fichier : {fichier}")  # Debug
+    print(f"Traitement du fichier : {fichier}") 
 
     # Chargement du document XML source
     tree_source = ET.parse(fichier)
