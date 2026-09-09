@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Éditeur de Spyder
 
-Ceci est un script temporaire.
-"""
 import pandas as pd
 import xml.etree.ElementTree as ET
 
@@ -19,11 +15,11 @@ root1 = tree1.getroot()
     
 for i in range(df.shape[0]):
     
-    if pd.isna(df.at[i, 'Profile 2']) == True:
-# Remplacer une balise spécifique
+    if pd.isna(df.at[i, 'Profile 2']) == True:# Remplacer une balise spécifique
+        
         for elem in root.iter('lastName'):
         
-            elem.text = (f"{i+101}")  # Si tu veux changer le texte aussi
+            elem.text = (f"{i+101}")  # afin de changer le texte aussi
             
         for elem in root.iter('login'):
         
@@ -44,14 +40,15 @@ for i in range(df.shape[0]):
     else:
         for elem in root1.iter('lastName'):
         
-            elem.text = (f"{i+161}") # Si tu veux changer le texte aussi
+            elem.text = (f"{i+161}") # Pour changer le texte aussi
             
         for elem in root1.iter('login'):
-            elem.text = (f"U{i+161}")#Pour changer le login
+            elem.text = (f"U{i+161}") #Pour changer le login
         
-        profile_elems = root1.findall('user/profile')  # Trouver toutes les balises <profile>
+        profile_elems = root1.findall('user/profile')  # Afin de trouver toutes les balises <profile>
         
-        if len(profile_elems) >= 2:  # S'assurer qu'il y a au moins deux profils
+        if len(profile_elems) >= 2:  # S'assurer qu'il y ait au moins deux profils
+            
             # Modifier le premier profil
             name_elem1 = profile_elems[0].find('name')
             if name_elem1 is not None:
@@ -61,9 +58,6 @@ for i in range(df.shape[0]):
             name_elem2 = profile_elems[1].find('name')
             if name_elem2 is not None:
                 name_elem2.text = df.at[i, 'Profile 2']
-                    
-
-
                 
     # Sauvegarder les modifications dans un nouveau fichier
         tree1.write(f"Concatener/fichier_modifie{i+161}.xml", encoding='utf-8', xml_declaration=True)
